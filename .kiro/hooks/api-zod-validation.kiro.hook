@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "name": "API Route Zod Schema Validator",
+  "description": "When a change is made to an API route handler, check for a corresponding Zod schema. If a schema is missing or incomplete, generate a basic schema based on the function's parameters and suggest its integration to validate the request body",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/app/api/**/route.ts",
+      "src/app/api/**/route.js"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "An API route handler has been modified. Please analyze the route handler code and check if it has a corresponding Zod schema for request validation. If no schema exists or if the existing schema is incomplete based on the function parameters, generate a basic Zod schema that validates the request body structure. Provide specific suggestions on how to integrate this schema into the route handler for proper input validation. Focus on the request body validation, query parameters, and any other inputs the API expects."
+  }
+}

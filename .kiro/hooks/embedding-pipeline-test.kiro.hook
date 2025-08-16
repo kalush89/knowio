@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "Embedding Pipeline Test",
+  "description": "When a change is made to the document ingestion pipeline, run a test to ensure the embedding function correctly processes a sample text chunk and stores the vector in the DocumentChunk model. If successful, automatically re-index the test data.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/lib/ingest/**",
+      "src/lib/embed/**",
+      "prisma/schema.prisma"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A change has been detected in the document ingestion pipeline. Please run a comprehensive test to:\n\n1. Test the embedding function with a sample text chunk to ensure it correctly generates vector embeddings\n2. Verify that the generated vectors can be properly stored in the DocumentChunk model in PostgreSQL with pgvector\n3. Test the complete ingestion flow from text processing to vector storage\n4. If all tests pass, automatically re-index the test data to ensure consistency\n5. Report any failures with specific error details and suggested fixes\n\nFocus on testing the integration between the embedding service (AWS Bedrock), the chunking logic, and the database storage layer. Ensure that vector dimensions match the expected format and that similarity searches work correctly."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "Prompt Template Test Runner",
+  "description": "Automatically runs tests with predefined queries and expected answers when prompt templates are modified. Compares LLM responses to expected outputs and logs warnings with diffs for significant deviations.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/lib/prompt/**/*.ts",
+      "src/lib/prompt/**/*.js",
+      "src/lib/prompt/**/*.json"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A prompt template file has been modified. Please run the automated test suite with the predefined set of queries and expected answers. Compare the LLM's current responses to the expected outputs. If any response deviates significantly from the expected answer, log a warning message and generate a detailed diff showing the differences between the expected and actual responses. Focus on semantic differences that could impact functionality rather than minor wording variations."
+  }
+}

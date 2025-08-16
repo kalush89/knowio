@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Git Commit Message Generator",
+  "description": "Analyzes staged Git changes and generates clear, descriptive commit messages that summarize the changes and links them back to relevant tasks in the spec file",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      ".git/index"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Analyze the current staged Git changes using `git diff --cached` and generate a clear, descriptive commit message that:\n\n1. Summarizes what was changed in a concise but informative way\n2. Uses conventional commit format (feat:, fix:, docs:, refactor:, etc.)\n3. References any relevant tasks, features, or specifications from the .kiro/specs/ directory\n4. Keeps the first line under 50 characters for the summary\n5. Includes a more detailed description if the changes are complex\n6. Links back to relevant documentation or spec files when applicable\n\nConsider the project context: this is a Next.js RAG-based AI chat support system for API documentation with PostgreSQL/pgvector, AWS Bedrock, and NextAuth.js."
+  }
+}

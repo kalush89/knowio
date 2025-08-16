@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "name": "Code Quality Review",
+  "description": "Reviews modified code files for adherence to Single Responsibility Principle, clear naming conventions, and absence of hacks or shortcuts. Adds comments with suggestions when violations are found.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "src/**/*.js",
+      "src/**/*.jsx",
+      "prisma/**/*.prisma",
+      "scripts/**/*.sql",
+      "scripts/**/*.js",
+      "scripts/**/*.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Review the modified code in the saved file for the following quality issues:\n\n1. **Single Responsibility Principle (SRP)**: Check if functions, classes, or components are doing too many things. Look for functions that handle multiple concerns or have multiple reasons to change.\n\n2. **Clear and Descriptive Naming**: Verify that variables, functions, classes, and components have meaningful names that clearly express their purpose. Flag generic names like 'data', 'item', 'temp', or abbreviations that aren't clear.\n\n3. **Hacks and Shortcuts**: Identify any obvious workarounds, TODO comments that indicate incomplete solutions, hardcoded values that should be configurable, or any code that appears to be a quick fix rather than a proper solution.\n\nIf you find any violations:\n- Add a comment directly in the code explaining the specific issue\n- Suggest a concrete fix or refactoring approach\n- Explain why the current approach violates best practices\n\nFocus on the most impactful issues first. Be constructive and educational in your feedback."
+  }
+}

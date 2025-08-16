@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "name": "API Documentation Sync",
+  "description": "Automatically updates README.md files in the docs folder with the latest endpoint details, request/response formats, and functionality descriptions when API route files are saved.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/app/api/**/route.ts",
+      "src/app/api/**/route.js"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "An API route file has been modified. Please analyze the updated route file and automatically update the corresponding README.md file in the docs folder with:\n\n1. Latest endpoint details (HTTP methods, URL paths, parameters)\n2. Request format and required/optional fields\n3. Response format and status codes\n4. Brief description of the functionality\n5. Any authentication requirements\n6. Example usage if applicable\n\nMake sure to maintain consistent documentation format and preserve any existing manual documentation that shouldn't be auto-generated. Create the docs/README.md file if it doesn't exist, or update the relevant sections if it does."
+  }
+}
